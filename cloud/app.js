@@ -11,7 +11,9 @@ app.use(express.query());
 APPID = AV.applicationId; // 你的应用 id
 MASTER_KEY = AV.masterKey; //你的应用 master key
 
-app.use('/we', wechat(config, function (req, res, next) {
+token = 'ADAQABAAABAQDktH6UrE77vsp';
+
+app.use('/we', wechat( token, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
