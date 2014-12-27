@@ -31,8 +31,9 @@ app.use('/wes', wechat( config, wechat.text(function (message, req, res, next) {
 }).event(function (message, req, res, next) {
  if (message.EventKey == 'menu_flow') {
    res.reply({
-     type: "link",
-     url: "http://v.qq.com/"
+     type: "event",
+     Event: "view",
+     EventKey: "http://v.qq.com/"
    });
  }else{
    res.reply('menu ' + message.EventKey);
