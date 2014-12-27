@@ -25,7 +25,9 @@ app.use('/we', wechat( token, function (req, res, next) {
 }));
 
 app.use('/wes', wechat( config, function (req, res, next) {
-  res.writeHead(200);
-  res.end('hello node api');
+  var message = req.weixin;
+  res.reply('hehe  ' + message.FromUserName );
+  //res.writeHead(200);
+  //res.end('hello node api');
 }));
 app.listen();
