@@ -24,10 +24,11 @@ app.use('/we', wechat( token, function (req, res, next) {
   res.end('hello node api');
 }));
 
-app.use('/wes', wechat( config, function (req, res, next) {
-  var message = req.weixin;
+app.use('/wes', wechat( config, wechat.text(function (message, req, res, next) {
   res.reply('hehe  ' + message.FromUserName );
   //res.writeHead(200);
   //res.end('hello node api');
-}));
+}).event(function (message, req, res, next) {
+  res.reply('menu ' + message.EventKey);
+})));
 app.listen();
