@@ -29,6 +29,13 @@ app.use('/wes', wechat( config, wechat.text(function (message, req, res, next) {
   //res.writeHead(200);
   //res.end('hello node api');
 }).event(function (message, req, res, next) {
-  res.reply('menu ' + message.EventKey);
+ if (message.EventKey == 'menu_flow') {
+   res.reply({
+     type: "link",
+     url: "http://v.qq.com/"
+   }),
+ }else{
+   res.reply('menu ' + message.EventKey);
+ }
 })));
 app.listen();
