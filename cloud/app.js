@@ -33,7 +33,7 @@ app.use('/wes', wechat( config, wechat.text(function (message, req, res, next) {
    res.reply({
      type: "link",
      url: "http://v.qq.com/"
-   }),
+   });
  }else{
    res.reply('menu ' + message.EventKey);
  }
