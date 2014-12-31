@@ -24,7 +24,7 @@ var config = {
 //  res.end('hello node api');
 //}));
 
-app.use(/\/ab*cd/, wechat( config, wechat.text(function (message, req, res, next) {
+app.use('/wes', wechat( config, wechat.text(function (message, req, res, next) {
   res.reply('hehe  ' + message.FromUserName  );
   //res.writeHead(200);
   //res.end('hello node api');
