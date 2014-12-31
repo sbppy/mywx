@@ -39,4 +39,21 @@ app.use('/wes/:userappid', wechat( config, wechat.text(function (message, req, r
    res.reply('menu ' + message.EventKey);
  }
 })));
+
+app.use('/wes', wechat( config, wechat.text(function (message, req, res, next) {
+  res.reply('hehe  ' + message.FromUserName );
+  //res.writeHead(200);
+  //res.end('hello node api');
+}).event(function (message, req, res, next) {
+ if (message.EventKey == 'menu_flow') {
+   res.reply({
+     type: "event",
+     Event: "view",
+     EventKey: "http://v.qq.com/"
+   });
+ }else{
+   res.reply('menu ' + message.EventKey);
+ }
+})));
+
 app.listen();
