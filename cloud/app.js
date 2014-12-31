@@ -19,12 +19,12 @@ var config = {
  encodingAESKey: 'i4aDBFCuxULvr8Eixrc0hLhx7SkqllHnsiGfL6KCY40'
 };
 
-app.use('/we', wechat( token, function (req, res, next) {
-  res.writeHead(200);
-  res.end('hello node api');
-}));
+//app.use('/we', wechat( token, function (req, res, next) {
+//  res.writeHead(200);
+//  res.end('hello node api');
+//}));
 
-app.use('/ab*cd', wechat( config, wechat.text(function (message, req, res, next) {
+app.use(/\/ab*cd/, wechat( config, wechat.text(function (message, req, res, next) {
   res.reply('hehe  ' + message.FromUserName  );
   //res.writeHead(200);
   //res.end('hello node api');
