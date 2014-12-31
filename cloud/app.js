@@ -24,8 +24,8 @@ app.use('/we', wechat( token, function (req, res, next) {
   res.end('hello node api');
 }));
 
-app.use('/wes/:userappid', wechat( config, wechat.text(function (message, req, res, next) {
-  res.reply('hehe  ' + message.FromUserName + ' ' + req.params.userappid );
+app.all('/^\d+$', wechat( config, wechat.text(function (message, req, res, next) {
+  res.reply('hehe  ' + message.FromUserName + ' ' + req.path );
   //res.writeHead(200);
   //res.end('hello node api');
 }).event(function (message, req, res, next) {
@@ -40,20 +40,5 @@ app.use('/wes/:userappid', wechat( config, wechat.text(function (message, req, r
  }
 })));
 
-app.use('/wes', wechat( config, wechat.text(function (message, req, res, next) {
-  res.reply('hehe  ' + message.FromUserName );
-  //res.writeHead(200);
-  //res.end('hello node api');
-}).event(function (message, req, res, next) {
- if (message.EventKey == 'menu_flow') {
-   res.reply({
-     type: "event",
-     Event: "view",
-     EventKey: "http://v.qq.com/"
-   });
- }else{
-   res.reply('menu ' + message.EventKey);
- }
-})));
 
 app.listen();
