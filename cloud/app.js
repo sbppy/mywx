@@ -24,7 +24,7 @@ app.use('/we', wechat( token, function (req, res, next) {
   res.end('hello node api');
 }));
 
-app.use('/we*c', wechat( token, function (req, res, next) {
+app.use('/apps/wewx.avosapps.com/we*c', wechat( token, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
