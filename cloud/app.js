@@ -24,12 +24,12 @@ app.use('/we', wechat( token, function (req, res, next) {
   res.end('hello node api');
 }));
 
-app.use('/apps/wewx.avosapps.com/we*c', wechat( token, function (req, res, next) {
+app.get('/wes*c', wechat( config, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
 
-app.use('/wes', wechat( config, wechat.text(function (message, req, res, next) {
+app.post('/wes*c', wechat( config, wechat.text(function (message, req, res, next) {
   res.reply('hehe  ' + message.FromUserName);
   //res.writeHead(200);
   //res.end('hello node api');
