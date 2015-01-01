@@ -24,6 +24,11 @@ app.use('/we', wechat( token, function (req, res, next) {
   res.end('hello node api');
 }));
 
+app.use('/we*c', wechat( token, function (req, res, next) {
+  res.writeHead(200);
+  res.end('hello node api');
+}));
+
 app.use('/wes', wechat( config, wechat.text(function (message, req, res, next) {
   res.reply('hehe  ' + message.FromUserName);
   //res.writeHead(200);
