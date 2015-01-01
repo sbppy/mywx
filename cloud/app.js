@@ -30,7 +30,7 @@ app.get('/wes*c', wechat( config, function (req, res, next) {
 }));
 
 app.post('/wes*c', wechat( config, wechat.text(function (message, req, res, next) {
-  res.reply('hehe  ' + message.FromUserName);
+  res.reply('hehe  ' + message.FromUserName + req.path);
   //res.writeHead(200);
   //res.end('hello node api');
 }).event(function (message, req, res, next) {
