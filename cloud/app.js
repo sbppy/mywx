@@ -6,7 +6,7 @@ var wechat = require('wechat');
 var app = express();
 
 // App 全局配置
-app.use(express.query());
+//app.use(express.query());
 
 APPID = AV.applicationId; // 你的应用 id
 MASTER_KEY = AV.masterKey; //你的应用 master key
