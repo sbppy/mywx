@@ -5,6 +5,10 @@ var wechat = require('wechat');
 
 var app = express();
 
+var WxappUser = AV.Object.extend("WxappUser");
+//var wxappUser = new WxappUser();
+
+
 // App 全局配置
 app.use(express.query());
 
@@ -19,27 +23,35 @@ var config = {
  encodingAESKey: 'i4aDBFCuxULvr8Eixrc0hLhx7SkqllHnsiGfL6KCY40'
 };
 
-app.use('/we', wechat( token, function (req, res, next) {
+app.use('/base', wechat( token, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
 
-app.get('/wes*c', wechat( config, function (req, res, next) {
+app.get('/u*', wechat( config, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
 
-app.post('/wes*c', wechat( config, wechat.text(function (message, req, res, next) {
+app.post('/u*', wechat( config, wechat.text(function (message, req, res, next) {
   res.reply('hehe  ' + message.FromUserName + req.path);
   //res.writeHead(200);
   //res.end('hello node api');
 }).event(function (message, req, res, next) {
- if (message.EventKey == 'menu_flow') {
-   res.reply({
-     type: "event",
-     Event: "view",
-     EventKey: "http://v.qq.com/"
-   });
+ if (message.Event == 'subscribe') {
+   res.reply('subscribe' );
+ }else{
+   res.reply('menu ' + message.EventKey);
+ }
+})));
+
+app.use('/base', wechat( config, wechat.text(function (message, req, res, next) {
+  res.reply('hehe  ' + message.FromUserName + req.path);
+  //res.writeHead(200);
+  //res.end('hello node api');
+}).event(function (message, req, res, next) {
+ if (message.Event == 'subscribe') {
+   res.reply('subscribe' );
  }else{
    res.reply('menu ' + message.EventKey);
  }
