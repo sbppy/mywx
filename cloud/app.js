@@ -70,7 +70,7 @@ function getUserConfig( userId ) {
 //  next();
 //}
 
-app.get(function(req, res, next) {
+app.use(function(req, res, next) {
   token = 'ADAQABAAABAQDktH6UrE77vsp';
   next();
 });
@@ -80,7 +80,7 @@ app.get(function(req, res, next) {
 //  res.end('hello node api');
 //}));
 
-app.get('/u*', wechat( token, function (req, res, next) {
+app.use('/u1234', wechat( token, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
