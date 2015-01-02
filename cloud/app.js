@@ -61,8 +61,8 @@ function initUser(userId, openId) {
   return rtn;
 }
 
-function getUserConfig( userId ) {
- return config;
+function getUserConfig() {
+ return token;
 }
 
 var loadMW = function (req, res, next) {
@@ -80,7 +80,7 @@ app.use(function(req, res, next) {
 //  res.end('hello node api');
 //}));
 
-app.use('/u1234', loadMW, wechat( token, function (req, res, next) {
+app.use('/u1234', loadMW, wechat( getUserConfig(), function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
