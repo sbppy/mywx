@@ -23,10 +23,10 @@ var config = {
  encodingAESKey: 'i4aDBFCuxULvr8Eixrc0hLhx7SkqllHnsiGfL6KCY40'
 };
 
-app.use('/base', wechat( token, function (req, res, next) {
-  res.writeHead(200);
-  res.end('hello node api');
-}));
+//app.use('/base', wechat( token, function (req, res, next) {
+//  res.writeHead(200);
+//  res.end('hello node api');
+//}));
 
 app.get('/u*', wechat( config, function (req, res, next) {
   res.writeHead(200);
@@ -40,6 +40,8 @@ app.post('/u*', wechat( config, wechat.text(function (message, req, res, next) {
 }).event(function (message, req, res, next) {
  if (message.Event == 'subscribe') {
    res.reply('subscribe' );
+ }else if(message.Event == 'unsubscribe') {
+   res.reply('unsubscribe' );
  }else{
    res.reply('menu ' + message.EventKey);
  }
@@ -52,6 +54,8 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
 }).event(function (message, req, res, next) {
  if (message.Event == 'subscribe') {
    res.reply('subscribe' );
+ }else if(message.Event == 'unsubscribe') {
+   res.reply('unsubscribe' );
  }else{
    res.reply('menu ' + message.EventKey);
  }
