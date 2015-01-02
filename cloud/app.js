@@ -77,7 +77,7 @@ app.use(function(req, res, next) {
 //  res.end('hello node api');
 //}));
 
-app.get('/u1234', wechat( usertoken, function (req, res, next) {
+app.use('/u1234', wechat( usertoken, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
