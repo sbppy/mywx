@@ -12,8 +12,8 @@ APPID = AV.applicationId; // 你的应用 id
 MASTER_KEY = AV.masterKey; //你的应用 master key
 
 //var usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
-global.usertoken = '';
-global.userid = '';
+usertoken = '';
+userid = '';
 
 var config = {
  token: 'ADAQABAAABAQDktH6UrE77vsp',
