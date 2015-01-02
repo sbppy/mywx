@@ -70,7 +70,7 @@ function getUserConfig( userId ) {
 //  next();
 //}
 
-app.use(function(req, res, next) {
+app.get(function(req, res, next) {
   token = 'ADAQABAAABAQDktH6UrE77vsp';
   next();
 });
