@@ -60,12 +60,12 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
        // The object was retrieved successfully.
        userIdCounter.increment("counter");
        userIdCounter.save();
-       res.reply('subscribe' + userIdCounter.get("counter"));
+       res.reply('subscribe:' + userIdCounter.get("counter"));
      },
      error: function(userIdCounter, error) {
      // The object was not retrieved successfully.
      // error is a AV.Error with an error code and description.
-     res.reply(error);
+       res.reply(error);
      }
    });
    
