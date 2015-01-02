@@ -13,6 +13,7 @@ MASTER_KEY = AV.masterKey; //你的应用 master key
 
 //var usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
 var usertoken = '';
+var userid = '';
 
 var config = {
  token: 'ADAQABAAABAQDktH6UrE77vsp',
@@ -59,12 +60,17 @@ function initUser(userId, openId) {
 }
 
 function getUserToken() {
- return 'ADAQABAAABAQDktH6UrE77vsp';
+ return usertoken;
 }
 
 app.use(function(req, res, next) {
+   var urlPath = req.path;
+   if (urlPath.substr(0,2) == '/u'){
+     usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
+     userid = urlPath.substr(0,2);
+   }
    res.writeHead(200);
-   res.end(req.url+' '+req.path);
+   res.end(usertoken + '  ' + userid);
 });
 
 //app.use('/base', wechat( token, function (req, res, next) {
