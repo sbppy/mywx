@@ -69,8 +69,8 @@ app.use(function(req, res, next) {
      usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
      userid = urlPath.substr(2);
    }
-   res.writeHead(200);
-   res.end(getUserToken());
+//   res.writeHead(200);
+//   res.end(getUserToken());
    next();
 });
 
@@ -79,7 +79,7 @@ app.use(function(req, res, next) {
 //  res.end('hello node api');
 //}));
 
-app.use('/u*', wechat( getUserToken(), function (req, res, next) {
+app.use('/u123', wechat( getUserToken(), function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
