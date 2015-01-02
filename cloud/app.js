@@ -65,10 +65,10 @@ function getUserConfig( userId ) {
  return config;
 }
 
-//var loadMW = function (req, res, next) {
-//  token = 'ADAQABAAABAQDktH6UrE77vsp';
-//  next();
-//}
+var loadMW = function (req, res, next) {
+  token = 'ADAQABAAABAQDktH6UrE77vsp';
+  next();
+};
 
 app.use(function(req, res, next) {
   token = 'ADAQABAAABAQDktH6UrE77vsp';
@@ -80,7 +80,7 @@ app.use(function(req, res, next) {
 //  res.end('hello node api');
 //}));
 
-app.use('/u1234', wechat( token, function (req, res, next) {
+app.use('/u1234', loadMW, wechat( token, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
@@ -90,7 +90,7 @@ app.use('/u1234', wechat( token, function (req, res, next) {
 //  res.end('hello node api');
 //}));
 
-app.post('/u*', wechat( config, wechat.text(function (message, req, res, next) {
+app.post('/u23', wechat( config, wechat.text(function (message, req, res, next) {
   res.reply('hehe  ' + message.FromUserName + req.path);
   //res.writeHead(200);
   //res.end('hello node api');
