@@ -1,9 +1,12 @@
 // 在 Cloud code 里初始化 Express 框架
 var express = require('express');
 var wechat = require('wechat');
+var muser = require('cloud/muser.js');
+
 //var config = require('cloud/config.js');
 
 var app = express();
+var user = new AV.User();
 
 // App 全局配置
 app.use(express.query());
@@ -61,15 +64,15 @@ function initUser(userId, openId) {
 
 function getUserToken() {
  //var str = 'ADAQABAAABAQDktH6UrE77vsp';
- return usertoken;
+ return m;
  //return 'ADAQABAAABAQDktH6UrE77vsp';
 }
 
 app.use(function(req, res, next) {
    var urlPath = req.path;
    if (urlPath.substr(0,2) == '/u'){
-     usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
-     userid = urlPath.substr(2);
+     //usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
+     user = muser.findUserByName(urlPath.substr(2));
    }
 //   res.writeHead(200);
 //   res.end(getUserToken());
@@ -81,7 +84,7 @@ app.use(function(req, res, next) {
 //  res.end('hello node api');
 //}));
 
-app.use('/u123', wechat( usertoken, function (req, res, next) {
+app.use('/u123', wechat( user.get("token"), function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
