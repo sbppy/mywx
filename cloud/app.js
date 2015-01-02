@@ -62,22 +62,17 @@ function getUserToken() {
  return 'ADAQABAAABAQDktH6UrE77vsp';
 }
 
-//app.use(function(req, res, next) {
-//  if (updateUserToken()){
-  //token = '';
-//    next();
-//  }else{
-//   res.writeHead(200);
-//   res.end(usertoken);
-//  };
-//});
+app.use(function(req, res, next) {
+   res.writeHead(200);
+   res.end(req.url+' '+req.path);
+});
 
 //app.use('/base', wechat( token, function (req, res, next) {
 //  res.writeHead(200);
 //  res.end('hello node api');
 //}));
 
-app.use('/u1234', wechat( getUserToken(), function (req, res, next) {
+app.use('/u*', wechat( getUserToken(), function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
