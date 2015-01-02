@@ -57,10 +57,6 @@ function initUser(userId, openId) {
   return rtn;
 }
 
-function getUserConfig() {
- return 'ADAQABAAABAQDktH6UrE77vsp';
-}
-
 var loadMW = function (req, res, next) {
   token = 'ADAQABAAABAQDktH6UrE77vsp';
   //token = '';
