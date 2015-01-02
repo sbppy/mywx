@@ -74,7 +74,7 @@ app.get('/u1234', loadMW);
 //  res.end('hello node api');
 //}));
 
-app.get('/u1234', loadMW, wechat( token, function (req, res, next) {
+app.get('/u1234', wechat( token, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
