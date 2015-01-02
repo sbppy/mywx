@@ -5,10 +5,6 @@ var wechat = require('wechat');
 
 var app = express();
 
-var WxappUser = AV.Object.extend("WxappUser");
-//var wxappUser = new WxappUser();
-
-
 // App 全局配置
 app.use(express.query());
 
@@ -71,11 +67,7 @@ var loadMW = function (req, res, next) {
   next();
 };
 
-app.use(function(req, res, next) {
-  token = 'ADAQABAAABAQDktH6UrE77vsp';
-  //token = '';
-  next();
-});
+app.use(loadMW);
 
 //app.use('/base', wechat( token, function (req, res, next) {
 //  res.writeHead(200);
