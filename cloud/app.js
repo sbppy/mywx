@@ -57,22 +57,18 @@ function initUser(userId, openId) {
   return rtn;
 }
 
-var loadMW = function (req, res, next) {
+app.use(function(req, res, next) {
   usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
   //token = '';
   next();
-};
-
-app.get(loadMW);
-
-app.use(loadMW);
+});
 
 //app.use('/base', wechat( token, function (req, res, next) {
 //  res.writeHead(200);
 //  res.end('hello node api');
 //}));
 
-app.use('/u1234', loadMW, wechat( usertoken, function (req, res, next) {
+app.get('/u1234', wechat( usertoken, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
