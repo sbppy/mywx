@@ -64,22 +64,17 @@ function getUserConfig() {
 var loadMW = function (req, res, next) {
   token = 'ADAQABAAABAQDktH6UrE77vsp';
   //token = '';
-  wechat( token, function (req, res, next) {
-    res.writeHead(200);
-    res.end('hello node api');
-  });
-  //next();
+  next();
 };
 
+app.get(loadMW);
 
 //app.use('/base', wechat( token, function (req, res, next) {
 //  res.writeHead(200);
 //  res.end('hello node api');
 //}));
 
-app.use('/u12345', loadMW);
-
-app.use('/u1234', wechat( token, function (req, res, next) {
+app.get('/u1234', loadMW, wechat( token, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
