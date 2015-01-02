@@ -67,10 +67,11 @@ app.use(function(req, res, next) {
    var urlPath = req.path;
    if (urlPath.substr(0,2) == '/u'){
      usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
-     userid = urlPath.substr(0,2);
+     userid = urlPath.substr(2);
    }
-   res.writeHead(200);
-   res.end(usertoken + '  ' + userid);
+   //res.writeHead(200);
+   //res.end(usertoken + '  ' + userid);
+   next();
 });
 
 //app.use('/base', wechat( token, function (req, res, next) {
