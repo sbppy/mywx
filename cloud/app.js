@@ -60,7 +60,8 @@ function initUser(userId, openId) {
 }
 
 function getUserToken() {
- return usertoken;
+ //return usertoken;
+ return 'ADAQABAAABAQDktH6UrE77vsp';
 }
 
 app.use(function(req, res, next) {
