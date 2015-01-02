@@ -4,6 +4,7 @@ var wechat = require('wechat');
 //var config = require('cloud/config.js');
 
 var app = express();
+var appRouter = app.Router();
 
 var WxappUser = AV.Object.extend("WxappUser");
 //var wxappUser = new WxappUser();
@@ -69,12 +70,21 @@ function getUserConfig( userId ) {
 //  res.end('hello node api');
 //}));
 
-app.get('/u*', wechat( config, function (req, res, next) {
+appRouter.get('/u*', function (req, res, next) {
+  wechat( getUserConfig(req.path), function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
-}));
+  });
+});
 
-app.post('/u*', wechat( getUserConfig(req.path), wechat.text(function (message, req, res, next) {
+app.get('/u*',appRouter);
+
+//app.get('/u*', wechat( config, function (req, res, next) {
+//  res.writeHead(200);
+//  res.end('hello node api');
+//}));
+
+app.post('/u*', wechat( config, wechat.text(function (message, req, res, next) {
   res.reply('hehe  ' + message.FromUserName + req.path);
   //res.writeHead(200);
   //res.end('hello node api');
