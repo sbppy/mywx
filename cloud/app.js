@@ -71,10 +71,13 @@ app.use(function(req, res, next) {
    var urlPath = req.path;
    if (urlPath.substr(0,2) == '/u'){
      //usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
-     user = muser.findUserByName(urlPath.substr(2));
+     muser.findUserByName(urlPath.substr(2)).then(function (c) {
+      user = c;
+     });
+   
+     res.writeHead(200);
+     res.end(user.get("token"));
    }
-   res.writeHead(200);
-   res.end(user.get("token"));
 //   next();
 });
 
