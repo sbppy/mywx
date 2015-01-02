@@ -65,19 +65,22 @@ function getUserConfig( userId ) {
  return config;
 }
 
-var loadMW = function (req, res, next) {
+//var loadMW = function (req, res, next) {
+//  token = 'ADAQABAAABAQDktH6UrE77vsp';
+//  next();
+//}
+
+app.use(function(req, res, next) {
   token = 'ADAQABAAABAQDktH6UrE77vsp';
   next();
-}
-
-app.use(loadMW);
+});
 
 //app.use('/base', wechat( token, function (req, res, next) {
 //  res.writeHead(200);
 //  res.end('hello node api');
 //}));
 
-app.get('/u*', loadMW, wechat( token, function (req, res, next) {
+app.get('/u*', wechat( token, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
