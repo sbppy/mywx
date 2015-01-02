@@ -58,7 +58,7 @@ function initUser(userId, openId) {
 }
 
 function getUserConfig() {
- return token;
+ return 'ADAQABAAABAQDktH6UrE77vsp';
 }
 
 var loadMW = function (req, res, next) {
