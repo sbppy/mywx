@@ -4,7 +4,6 @@ var wechat = require('wechat');
 //var config = require('cloud/config.js');
 
 var app = express();
-var appRouter = app.Router();
 
 var WxappUser = AV.Object.extend("WxappUser");
 //var wxappUser = new WxappUser();
@@ -16,7 +15,8 @@ app.use(express.query());
 APPID = AV.applicationId; // 你的应用 id
 MASTER_KEY = AV.masterKey; //你的应用 master key
 
-token = 'ADAQABAAABAQDktH6UrE77vsp';
+//token = 'ADAQABAAABAQDktH6UrE77vsp';
+token = '';
 
 var config = {
  token: 'ADAQABAAABAQDktH6UrE77vsp',
@@ -65,19 +65,19 @@ function getUserConfig( userId ) {
  return config;
 }
 
+var loadMW = function (req, res, next) {
+  token = 'ADAQABAAABAQDktH6UrE77vsp';
+  next();
+}
 //app.use('/base', wechat( token, function (req, res, next) {
 //  res.writeHead(200);
 //  res.end('hello node api');
 //}));
 
-appRouter.get('/u*', function (req, res, next) {
-  wechat( getUserConfig(req.path), function (req, res, next) {
+app.get('/u*',loadMW, wechat( token, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
-  });
-});
-
-app.get('/u*',appRouter);
+}));
 
 //app.get('/u*', wechat( config, function (req, res, next) {
 //  res.writeHead(200);
