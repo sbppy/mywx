@@ -63,7 +63,7 @@ var loadMW = function (req, res, next) {
   next();
 };
 
-app.get('/u1234', loadMW);
+app.get(loadMW);
 
 //app.use('/base', wechat( token, function (req, res, next) {
 //  res.writeHead(200);
