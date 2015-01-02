@@ -15,8 +15,8 @@ app.use(express.query());
 APPID = AV.applicationId; // 你的应用 id
 MASTER_KEY = AV.masterKey; //你的应用 master key
 
-token = 'ADAQABAAABAQDktH6UrE77vsp';
-//token = '';
+//token = 'ADAQABAAABAQDktH6UrE77vsp';
+token = '';
 
 var config = {
  token: 'ADAQABAAABAQDktH6UrE77vsp',
@@ -66,7 +66,7 @@ function getUserConfig( userId ) {
 }
 
 var loadMW = function (req, res, next) {
-  token = '';
+  token = 'ADAQABAAABAQDktH6UrE77vsp';
   next();
 }
 
@@ -77,7 +77,7 @@ app.use(loadMW);
 //  res.end('hello node api');
 //}));
 
-app.get('/u*',loadMW, wechat( token, function (req, res, next) {
+app.get('/u*', loadMW, wechat( token, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
