@@ -60,7 +60,8 @@ function initUser(userId, openId) {
 }
 
 function getUserToken() {
- return usertoken.toString();
+ var str = 'ADAQABAAABAQDktH6UrE77vsp';
+ return str;
  //return 'ADAQABAAABAQDktH6UrE77vsp';
 }
 
