@@ -15,8 +15,7 @@ APPID = AV.applicationId; // 你的应用 id
 MASTER_KEY = AV.masterKey; //你的应用 master key
 
 //var usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
-usertoken = '';
-userid = '';
+
 
 var config = {
  token: 'ADAQABAAABAQDktH6UrE77vsp',
@@ -74,9 +73,9 @@ app.use(function(req, res, next) {
      //usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
      user = muser.findUserByName(urlPath.substr(2));
    }
-//   res.writeHead(200);
-//   res.end(getUserToken());
-   next();
+   res.writeHead(200);
+   res.end(user.get("token"));
+//   next();
 });
 
 //app.use('/base', wechat( token, function (req, res, next) {
