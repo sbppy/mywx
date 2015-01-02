@@ -39,9 +39,10 @@ function randomString(length) {
 function initUser(userId, openId) {
   var user = new AV.User();
   var rtn;
-  user.set("username", openId);
+  user.set("username", userId);
   user.set("password", randomString(6));
   user.set("email", userId + "@example.com");
+  user.set("openId", openId);
   user.set("encodingAESKey",randomString(43)); 
   user.set("token",randomString(6));
 
@@ -59,6 +60,10 @@ function initUser(userId, openId) {
   return rtn;
 }
 
+function getUserConfig( userId ) {
+ return config;
+}
+
 //app.use('/base', wechat( token, function (req, res, next) {
 //  res.writeHead(200);
 //  res.end('hello node api');
@@ -69,7 +74,7 @@ app.get('/u*', wechat( config, function (req, res, next) {
   res.end('hello node api');
 }));
 
-app.post('/u*', wechat( config, wechat.text(function (message, req, res, next) {
+app.post('/u*', wechat( getUserConfig(req.path), wechat.text(function (message, req, res, next) {
   res.reply('hehe  ' + message.FromUserName + req.path);
   //res.writeHead(200);
   //res.end('hello node api');
