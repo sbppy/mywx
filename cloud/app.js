@@ -69,8 +69,8 @@ app.use(function(req, res, next) {
      usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
      userid = urlPath.substr(2);
    }
-   //res.writeHead(200);
-   //res.end(usertoken + '  ' + userid);
+   res.writeHead(200);
+   res.end(getUserToken());
    next();
 });
 
