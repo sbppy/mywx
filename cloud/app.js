@@ -6,7 +6,7 @@ var wechat = require('wechat');
 var app = express();
 
 // App 全局配置
-//app.use(express.query());
+app.use(express.query());
 
 APPID = AV.applicationId; // 你的应用 id
 MASTER_KEY = AV.masterKey; //你的应用 master key
@@ -58,26 +58,26 @@ function initUser(userId, openId) {
   return rtn;
 }
 
-function updateUserToken() {
- usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
- return true;
+function getUserToken() {
+ return 'ADAQABAAABAQDktH6UrE77vsp';
 }
-app.use(function(req, res, next) {
-  if (updateUserToken()){
+
+//app.use(function(req, res, next) {
+//  if (updateUserToken()){
   //token = '';
-    next();
-  }else{
-   res.writeHead(200);
-   res.end(usertoken);
-  };
-});
+//    next();
+//  }else{
+//   res.writeHead(200);
+//   res.end(usertoken);
+//  };
+//});
 
 //app.use('/base', wechat( token, function (req, res, next) {
 //  res.writeHead(200);
 //  res.end('hello node api');
 //}));
 
-app.use('/u1234', wechat( usertoken, function (req, res, next) {
+app.use('/u1234', wechat( getUserToken(), function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
