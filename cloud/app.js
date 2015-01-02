@@ -75,10 +75,10 @@ app.use(function(req, res, next) {
       user = c;
      });
    
-     res.writeHead(200);
-     res.end(user.get("token"));
+//     res.writeHead(200);
+//     res.end(user.get("token"));
    }
-//   next();
+   next();
 });
 
 //app.use('/base', wechat( token, function (req, res, next) {
