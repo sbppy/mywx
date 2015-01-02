@@ -59,7 +59,7 @@ function initUser(userId, openId) {
 
 function updateUserToken() {
  usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
- return true;
+ return false;
 }
 app.use(function(req, res, next) {
   if (updateUserToken()){
