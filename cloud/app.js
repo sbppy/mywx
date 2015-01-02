@@ -57,10 +57,18 @@ function initUser(userId, openId) {
   return rtn;
 }
 
+function updateUserToken() {
+ usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
+ return true;
+}
 app.use(function(req, res, next) {
-  usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
+  if (updateUserToken()){
   //token = '';
-  next();
+    next();
+  }else{
+   res.writeHead(200);
+   res.end('hello node api');
+  };
 });
 
 //app.use('/base', wechat( token, function (req, res, next) {
