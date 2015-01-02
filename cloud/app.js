@@ -15,7 +15,8 @@ MASTER_KEY = AV.masterKey; //你的应用 master key
 var usertoken ;
 
 var config = {
- token: 'ADAQABAAABAQDktH6UrE77vsp',
+ //token: 'ADAQABAAABAQDktH6UrE77vsp',
+ token: '',
  appid: 'wx639ea8a58aa706ca',
  encodingAESKey: 'i4aDBFCuxULvr8Eixrc0hLhx7SkqllHnsiGfL6KCY40'
 };
@@ -58,8 +59,8 @@ function initUser(userId, openId) {
 }
 
 function updateUserToken() {
- usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
- return false;
+ config.token = 'ADAQABAAABAQDktH6UrE77vsp';
+ return true;
 }
 app.use(function(req, res, next) {
   if (updateUserToken()){
@@ -76,7 +77,7 @@ app.use(function(req, res, next) {
 //  res.end('hello node api');
 //}));
 
-app.get('/u1234', wechat( usertoken, function (req, res, next) {
+app.get('/u1234', wechat( config.token, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
