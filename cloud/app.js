@@ -15,8 +15,8 @@ app.use(express.query());
 APPID = AV.applicationId; // 你的应用 id
 MASTER_KEY = AV.masterKey; //你的应用 master key
 
-//token = 'ADAQABAAABAQDktH6UrE77vsp';
-token = '';
+var token = 'ADAQABAAABAQDktH6UrE77vsp';
+//token = '';
 
 var config = {
  token: 'ADAQABAAABAQDktH6UrE77vsp',
@@ -66,12 +66,14 @@ function getUserConfig() {
 }
 
 var loadMW = function (req, res, next) {
-  token = 'ADAQABAAABAQDktH6UrE77vsp';
+  //token = 'ADAQABAAABAQDktH6UrE77vsp';
+  token = '';
   next();
 };
 
 app.use(function(req, res, next) {
-  token = 'ADAQABAAABAQDktH6UrE77vsp';
+  //token = 'ADAQABAAABAQDktH6UrE77vsp';
+  token = '';
   next();
 });
 
