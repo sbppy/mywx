@@ -64,7 +64,9 @@ var loadMW = function (req, res, next) {
 };
 
 app.get(loadMW);
+
 app.use(loadMW);
+
 //app.use('/base', wechat( token, function (req, res, next) {
 //  res.writeHead(200);
 //  res.end('hello node api');
