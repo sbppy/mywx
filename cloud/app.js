@@ -63,7 +63,7 @@ function initUser(userId, openId) {
 
 function getUserToken() {
  //var str = 'ADAQABAAABAQDktH6UrE77vsp';
- return m;
+ return user.get("token");
  //return 'ADAQABAAABAQDktH6UrE77vsp';
 }
 
@@ -81,17 +81,17 @@ app.use(function(req, res, next) {
    next();
 });
 
-//app.use('/base', wechat( token, function (req, res, next) {
+//app.use('/base', wechat( getUserToken(), function (req, res, next) {
 //  res.writeHead(200);
 //  res.end('hello node api');
 //}));
 
-app.use('/u123', wechat( user.get("token"), function (req, res, next) {
+app.use('/u1234', wechat( getUserToken(), function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
 
-app.use('/u1234', function (req, res, next) {
+app.use('/u123', function (req, res, next) {
   res.writeHead(200);
   res.end(user.get("token"));
 });
