@@ -53,6 +53,19 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
   //res.end('hello node api');
 }).event(function (message, req, res, next) {
  if (message.Event == 'subscribe') {
+   var UserIdCounter = AV.Object.extend("UserIdCounter");
+   var query = new AV.Query(UserIdCounter);
+   query.get("54a63c14e4b021ec8f4ee469", {
+     success: function(userIdCounter) {
+       // The object was retrieved successfully.
+       userIdCounter.increment("counter");
+       userIdCounter.save();
+     },
+     error: function(userIdCounter, error) {
+     // The object was not retrieved successfully.
+     // error is a AV.Error with an error code and description.
+     }
+   });
    res.reply('subscribe' );
  }else if(message.Event == 'unsubscribe') {
    res.reply('unsubscribe' );
