@@ -75,8 +75,8 @@ app.use(function(req, res, next) {
     query.first({
       success: function(currentUser) {
         req.wechat_token = currentUser.get("token");
-        res.writeHead(200);
-        res.end('hello node api'+ currentUser.get("token"));
+        //res.writeHead(200);
+        //res.end('hello node api'+ currentUser.get("token"));
       },
       error: function(error) {
         res.writeHead(200);
