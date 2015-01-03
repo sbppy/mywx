@@ -79,7 +79,7 @@ app.use(function(req, res, next) {
        }else{ 
          res.writeHead(200);
          res.end('hello node api');
-       });
+       }});
    };
    next();
 });
