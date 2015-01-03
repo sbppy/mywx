@@ -2,7 +2,7 @@
 var express = require('express');
 var wechat = require('wechat');
 var muser = require('cloud/muser.js');
-var User = AV.Object.extend('_User');
+var User = AV.Object.extend('AppUser');
 
 //var config = require('cloud/config.js');
 
@@ -71,7 +71,7 @@ app.use(function(req, res, next) {
     var query = new AV.Query(User);
     var username = urlPath.substr(2);
     
-    query.equalTo("username", username);
+    query.equalTo("userid", username);
     query.first({
       success: function(currentUser) {
         req.wechat_token = currentUser.get("token");
