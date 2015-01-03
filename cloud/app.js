@@ -68,6 +68,7 @@ app.use(function(req, res, next) {
 
    if (urlPath.substr(0,2) == '/u'){
      req.wechat_token = 'ADAQABAAABAQDktH6UrE77vsp';
+     
      //muser.findUserByName(urlPath.substr(2)).then(function (c) {
      //  req.wechat_token = c.get("token");
      //});
