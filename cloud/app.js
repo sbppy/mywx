@@ -76,7 +76,9 @@ app.use(function(req, res, next) {
       success: function(currentUser) {
         //for (var i = 0; i < results.length; i++) {
         //  var currentUser = results[i];
-        req.wechat_token = currentUser.get('token');
+        if (currentUser){
+          req.wechat_token = currentUser.get('token');
+        }
         next();
         //}
       },
