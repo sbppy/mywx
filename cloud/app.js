@@ -64,11 +64,11 @@ function initUser(userId, openId) {
 
 app.use(function(req, res, next) {
 //   var user = new AV.User();
-  var User = AV.Object.extend('AppUser');
+  var AppUser = AV.Object.extend('AppUser');
   var urlPath = req.path;
 
   if (urlPath.substr(0,2) == '/u'){
-    var query = new AV.Query(User);
+    var query = new AV.Query(AppUser);
     var userid = urlPath.substr(2);
     var i = false;
     query.equalTo("userid", userid);
