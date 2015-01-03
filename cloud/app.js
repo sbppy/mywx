@@ -71,31 +71,31 @@ app.use(function(req, res, next) {
   var printtype = '';
   
   if (urlPath.substr(0,2) == '/u'){
-    query.equalTo("userid", '1234');
-    //query.find({
+    query.equalTo("userid", userif);
     query.first({
       success: function(currentUser) {
         //for (var i = 0; i < results.length; i++) {
         //  var currentUser = results[i];
-        //req.wechat_token = currentUser.get('token');
-        printtype = typeof(currentUser);
+        req.wechat_token = currentUser.get('token');
+        next();
         //}
       },
       error: function(error) {
-        alert("Error: " + error.code + " " + error.message);
+        res.writeHead(200);
+        res.end("Error: " + error.code + " " + error.message);
       }
     });
     //muser.findUserByName(urlPath.substr(2)).then(function (c) {
     //  req.wechat_token = c.get("token");
     //});
   };
-  res.writeHead(200);
+  //res.writeHead(200);
   //if (isfound){
-   res.end(printtype);
+  //res.end(printtype);
   //}else{
    //res.end('not found' + userid);
   //}
-  next();
+  //next();
 });
 
 app.get('/u*', wechat( usertoken, function (req, res, next) {
