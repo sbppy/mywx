@@ -76,7 +76,7 @@ app.use(function(req, res, next) {
    next();
 });
 
-app.use('/u*', wechat( usertoken, function (req, res, next) {
+app.use('/:id', wechat( usertoken, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
