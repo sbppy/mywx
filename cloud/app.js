@@ -2,6 +2,7 @@
 var express = require('express');
 var wechat = require('wechat');
 var muser = require('cloud/muser.js');
+//var User = AV.Object.extend('_User');
 
 //var config = require('cloud/config.js');
 
@@ -68,8 +69,9 @@ app.use(function(req, res, next) {
 
   if (urlPath.substr(0,2) == '/u'){
     //req.wechat_token = 'ADAQABAAABAQDktH6UrE77vsp';
-    var user = new AV.User();
-    var query = new AV.Query(user);
+    //var user = new AV.User();
+    //var query = new AV.Query(user);
+    var query = new AV.Query(AV.User);
     query.equalTo("username", urlPath.substr(2));
     query.first({
       success: function(object) {
