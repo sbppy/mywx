@@ -6,7 +6,7 @@ var muser = require('cloud/muser.js');
 //var config = require('cloud/config.js');
 
 var app = express();
-var user = new AV.User();
+
 
 // App 全局配置
 app.use(express.query());
@@ -70,6 +70,7 @@ function getUserToken() {
 }
 
 app.use(function(req, res, next) {
+   var user = new AV.User();
    var urlPath = req.path;
 
    if (urlPath.substr(0,3) == '/u/'){
