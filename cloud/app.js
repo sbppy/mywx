@@ -67,9 +67,10 @@ app.use(function(req, res, next) {
    var urlPath = req.path;
 
    if (urlPath.substr(0,2) == '/u'){
-     muser.findUserByName(urlPath.substr(2)).then(function (c) {
-       req.wechat_token = c.get("token");
-     });
+     req.wechat_token = 'ADAQABAAABAQDktH6UrE77vsp';
+     //muser.findUserByName(urlPath.substr(2)).then(function (c) {
+     //  req.wechat_token = c.get("token");
+     //});
    };
    next();
 });
