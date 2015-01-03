@@ -71,7 +71,7 @@ app.use(function(req, res, next) {
     var query = new AV.Query(AppUser);
     var userid = urlPath.substr(2);
     var i = false;
-    //query.equalTo("userid", userid);
+    query.equalTo("userid", userid);
     //query.find({
     query.first({
       success: function(currentUser) {
