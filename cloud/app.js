@@ -62,29 +62,22 @@ function initUser(userId, openId) {
   return rtn;
 }
 
-function getUserToken() {
- var str = 'ADAQABAAABAQDktH6UrE77vsp';
- //var str = user.get("token");
- return str;
- //return 'ADAQABAAABAQDktH6UrE77vsp';
-}
-
 app.use(function(req, res, next) {
-   var user = new AV.User();
+//   var user = new AV.User();
    var urlPath = req.path;
 
    if (urlPath.substr(0,3) == '/u/'){
      muser.findUserByName(urlPath.substr(3)).then(function (c) {
        if (c) {
-         user = c;
-         req.wechat_token = user.get("token");
+//         user = c;
+         req.wechat_token = c.get("token");
        }else{ 
          res.writeHead(200);
-         res.end('hello node api');
+         res.end('not found user');
        }});
    };
    res.writeHead(200);
-   res.end(user.get("token"));
+   res.end('here'));
    next();
 });
 
