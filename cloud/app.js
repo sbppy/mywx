@@ -77,7 +77,7 @@ app.use(function(req, res, next) {
        }});
    };
    res.writeHead(200);
-   res.end('here'));
+   res.end('here');
    next();
 });
 
