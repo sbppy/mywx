@@ -71,7 +71,7 @@ app.use(function(req, res, next) {
   var isfound = false;
   
   if (urlPath.substr(0,2) == '/u'){
-    query.equalTo("userid", userid);
+    query.equalTo("userid", '1234');
     //query.find({
     query.first({
       success: function(currentUser) {
