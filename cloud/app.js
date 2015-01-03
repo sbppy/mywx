@@ -79,7 +79,7 @@ app.use(function(req, res, next) {
         //  var currentUser = results[i];
         //  req.wechat_token = currentUser.get('token');
           i = true;
-        }
+        //}
       },
       error: function(error) {
         alert("Error: " + error.code + " " + error.message);
