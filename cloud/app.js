@@ -66,11 +66,11 @@ app.use(function(req, res, next) {
 //   var user = new AV.User();
   
   var urlPath = req.path;
-
+  var query = new AV.Query(AppUser);
+  var userid = urlPath.substr(2);
+  var i = false;
+  
   if (urlPath.substr(0,2) == '/u'){
-    var query = new AV.Query(AppUser);
-    var userid = urlPath.substr(2);
-    var i = false;
     query.equalTo("userid", userid);
     //query.find({
     query.first({
