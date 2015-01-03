@@ -79,9 +79,9 @@ app.use(function(req, res, next) {
         //alert("Error: " + error.code + " " + error.message);
       }
     });
-    muser.findUserByName(urlPath.substr(2)).then(function (c) {
-      req.wechat_token = c.get("token");
-    });
+    //muser.findUserByName(urlPath.substr(2)).then(function (c) {
+    //  req.wechat_token = c.get("token");
+    //});
   };
   next();
 });
