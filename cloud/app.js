@@ -73,12 +73,12 @@ app.use(function(req, res, next) {
     var i = false;
     //query.equalTo("userid", userid);
     //query.find({
-    query.get("54a7e20be4b02eae43d254a7",{
-      success: function(results) {
+    query.first({
+      success: function(currentUser) {
         //for (var i = 0; i < results.length; i++) {
         //  var currentUser = results[i];
-        //  req.wechat_token = currentUser.get('token');
-          i = true;
+        req.wechat_token = currentUser.get('token');
+        i = true;
         //}
       },
       error: function(error) {
