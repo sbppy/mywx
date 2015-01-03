@@ -6,7 +6,7 @@ var muser = require('cloud/muser.js');
 //var config = require('cloud/config.js');
 
 var app = express();
-
+var AppUser = AV.Object.extend('AppUser');
 
 // App 全局配置
 app.use(express.query());
@@ -64,7 +64,7 @@ function initUser(userId, openId) {
 
 app.use(function(req, res, next) {
 //   var user = new AV.User();
-  var AppUser = AV.Object.extend('AppUser');
+  
   var urlPath = req.path;
 
   if (urlPath.substr(0,2) == '/u'){
