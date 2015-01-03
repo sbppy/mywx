@@ -64,16 +64,26 @@ function initUser(userId, openId) {
 
 app.use(function(req, res, next) {
 //   var user = new AV.User();
-   var urlPath = req.path;
+  var urlPath = req.path;
 
-   if (urlPath.substr(0,2) == '/u'){
-     //req.wechat_token = 'ADAQABAAABAQDktH6UrE77vsp';
-     
-     muser.findUserByName(urlPath.substr(2)).then(function (c) {
-       req.wechat_token = c.get("token");
-     });
-   };
-   next();
+  if (urlPath.substr(0,2) == '/u'){
+    //req.wechat_token = 'ADAQABAAABAQDktH6UrE77vsp';
+    var user = new AV.User();
+    var query = new AV.Query(user);
+    query.equalTo("username", urlPath.substr(2));
+    query.first({
+      success: function(object) {
+        req.wechat_token = object.get("token");
+      },
+      error: function(error) {
+        //alert("Error: " + error.code + " " + error.message);
+      }
+    });
+    muser.findUserByName(urlPath.substr(2)).then(function (c) {
+      req.wechat_token = c.get("token");
+    });
+  };
+  next();
 });
 
 app.get('/u*', wechat( usertoken, function (req, res, next) {
