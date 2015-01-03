@@ -68,10 +68,10 @@ app.use(function(req, res, next) {
   var urlPath = req.path;
   var query = new AV.Query(AppUser);
   var userid = urlPath.substr(2);
-  var printtype = '';
+  //var printtype = '';
   
   if (urlPath.substr(0,2) == '/u'){
-    query.equalTo("userid", userif);
+    query.equalTo("userid", userid);
     query.first({
       success: function(currentUser) {
         //for (var i = 0; i < results.length; i++) {
