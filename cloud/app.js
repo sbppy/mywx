@@ -68,7 +68,7 @@ app.use(function(req, res, next) {
   var urlPath = req.path;
   var query = new AV.Query(AppUser);
   var userid = urlPath.substr(2);
-  var isfound = false;
+  var printtype = '';
   
   if (urlPath.substr(0,2) == '/u'){
     query.equalTo("userid", '1234');
@@ -77,8 +77,8 @@ app.use(function(req, res, next) {
       success: function(currentUser) {
         //for (var i = 0; i < results.length; i++) {
         //  var currentUser = results[i];
-        req.wechat_token = currentUser.get('token');
-        isfound = true;
+        //req.wechat_token = currentUser.get('token');
+        printtype = typeof(currentUser);
         //}
       },
       error: function(error) {
@@ -90,11 +90,11 @@ app.use(function(req, res, next) {
     //});
   };
   res.writeHead(200);
-  if (isfound){
-   res.end('found' + userid);
-  }else{
-   res.end('not found' + userid);
-  }
+  //if (isfound){
+   res.end(printtype);
+  //}else{
+   //res.end('not found' + userid);
+  //}
   next();
 });
 
