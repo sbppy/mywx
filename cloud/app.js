@@ -80,6 +80,8 @@ app.use(function(req, res, next) {
         res.end('hello node api'+ object.get("token"));
       },
       error: function(error) {
+        res.writeHead(200);
+        res.end('hello node api error');
         //alert("Error: " + error.code + " " + error.message);
       }
     });
