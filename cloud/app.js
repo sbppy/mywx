@@ -71,6 +71,8 @@ function getUserToken() {
 
 app.use(function(req, res, next) {
    var urlPath = req.path;
+   res.writeHead(200);
+   res.end(urlPath);
    if (urlPath.substr(0,2) == '/u'){
      muser.findUserByName(urlPath.substr(2)).then(function (c) {
        if (c) {
@@ -84,12 +86,12 @@ app.use(function(req, res, next) {
    next();
 });
 
-app.get('/u*', wechat( usertoken, function (req, res, next) {
+app.use('/u/:id', wechat( usertoken, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
 
-app.post('/u*', wechat( usertoken, wechat.text(function (message, req, res, next) {
+app.use('/u122333', wechat( usertoken, wechat.text(function (message, req, res, next) {
   res.reply('hehe  ' + message.FromUserName + req.path);
   //res.writeHead(200);
   //res.end('hello node api');
