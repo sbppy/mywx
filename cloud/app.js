@@ -68,10 +68,7 @@ app.use(function(req, res, next) {
   var urlPath = req.path;
 
   if (urlPath.substr(0,2) == '/u'){
-    //req.wechat_token = 'ADAQABAAABAQDktH6UrE77vsp';
-    //var user = new AV.User();
-    //var query = new AV.Query(user);
-    var query = new AV.Query(AV.User);
+    var query = new AV.Query(User);
     var username = urlPath.substr(2);
     
     query.equalTo("username", username);
