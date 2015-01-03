@@ -76,9 +76,9 @@ app.use(function(req, res, next) {
      muser.findUserByName(urlPath.substr(2)).then(function (c) {
        user = c;
      });
-   
-//     res.writeHead(200);
-//     res.end(user.get("token"));
+     req.wechat_token = user.get("token");
+     res.writeHead(200);
+     res.end(req.wechat_token);
    }
    next();
 });
