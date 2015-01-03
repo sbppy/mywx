@@ -71,10 +71,9 @@ function getUserToken() {
 
 app.use(function(req, res, next) {
    var urlPath = req.path;
-   res.writeHead(200);
-   res.end(urlPath);
-   if (urlPath.substr(0,2) == '/u'){
-     muser.findUserByName(urlPath.substr(2)).then(function (c) {
+
+   if (urlPath.substr(0,3) == '/u/'){
+     muser.findUserByName(urlPath.substr(3)).then(function (c) {
        if (c) {
          user = c;
          req.wechat_token = user.get("token");
@@ -83,6 +82,8 @@ app.use(function(req, res, next) {
          res.end('hello node api');
        }});
    };
+   res.writeHead(200);
+   res.end(user.get("token"));
    next();
 });
 
