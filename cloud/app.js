@@ -10,6 +10,7 @@ var user = new AV.User();
 
 // App 全局配置
 app.use(express.query());
+app.use(express.bodyParser()); 
 
 APPID = AV.applicationId; // 你的应用 id
 MASTER_KEY = AV.masterKey; //你的应用 master key
