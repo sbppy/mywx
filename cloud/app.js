@@ -2,7 +2,6 @@
 var express = require('express');
 var wechat = require('wechat');
 var muser = require('cloud/muser.js');
-var User = AV.Object.extend('AppUser');
 
 //var config = require('cloud/config.js');
 
@@ -65,23 +64,23 @@ function initUser(userId, openId) {
 
 app.use(function(req, res, next) {
 //   var user = new AV.User();
+  var User = AV.Object.extend('AppUser');
   var urlPath = req.path;
 
   if (urlPath.substr(0,2) == '/u'){
     var query = new AV.Query(User);
-    var username = urlPath.substr(2);
+    var userid = urlPath.substr(2);
     
-    query.equalTo("userid", username);
-    query.first({
-      success: function(currentUser) {
-        req.wechat_token = currentUser.get("token");
-        //res.writeHead(200);
-        //res.end('hello node api'+ currentUser.get("token"));
+    query.equalTo("userid", userid);
+    query.find({
+      success: function(results) {
+        for (var i = 0; i < results.length; i++) {
+          var currentUser = results[i];
+          req.wechat_token = currentUser.get('token'));
+        }
       },
       error: function(error) {
-        res.writeHead(200);
-        res.end('hello node api error');
-        //alert("Error: " + error.code + " " + error.message);
+        alert("Error: " + error.code + " " + error.message);
       }
     });
     //muser.findUserByName(urlPath.substr(2)).then(function (c) {
