@@ -73,10 +73,10 @@ app.use(function(req, res, next) {
     
     query.equalTo("username", username);
     query.first({
-      success: function(object) {
-        req.wechat_token = object.get("token");
+      success: function(currentUser) {
+        req.wechat_token = currentUser.get("token");
         res.writeHead(200);
-        res.end('hello node api'+ object.get("token"));
+        res.end('hello node api'+ currentUser.get("token"));
       },
       error: function(error) {
         res.writeHead(200);
