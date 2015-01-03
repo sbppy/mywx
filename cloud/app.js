@@ -86,14 +86,14 @@ app.use(function(req, res, next) {
 //  res.end('hello node api');
 //}));
 
-app.use('/u1234', wechat( '', function (req, res, next) {
+app.use('/u123', wechat( '', function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
 
-app.use('/u123', function (req, res, next) {
+app.use('/u1234', function (req, res, next) {
   res.writeHead(200);
-  res.end(user.get("token"));
+  res.end(req.wechat_token);
 });
 //app.get('/u*', wechat( config, function (req, res, next) {
 //  res.writeHead(200);
