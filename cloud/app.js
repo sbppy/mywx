@@ -68,16 +68,9 @@ app.use(function(req, res, next) {
 
    if (urlPath.substr(0,3) == '/u/'){
      muser.findUserByName(urlPath.substr(3)).then(function (c) {
-       if (c) {
-//         user = c;
-         req.wechat_token = c.get("token");
-       }else{ 
-         res.writeHead(200);
-         res.end('not found user');
-       }});
+       req.wechat_token = c.get("token");
+     });
    };
-   res.writeHead(200);
-   res.end('here');
    next();
 });
 
