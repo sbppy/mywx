@@ -6,7 +6,7 @@ var muser = require('cloud/muser.js');
 //var config = require('cloud/config.js');
 
 var app = express();
-var AppUser = AV.Object.extend('AppUser');
+var AppUser = AV.Object.extend("AppUser");
 
 // App 全局配置
 app.use(express.query());
