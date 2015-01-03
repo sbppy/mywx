@@ -72,7 +72,10 @@ app.use(function(req, res, next) {
     //var user = new AV.User();
     //var query = new AV.Query(user);
     var query = new AV.Query(AV.User);
-    query.equalTo("username", urlPath.substr(2));
+    var username = urlPath.substr(2);
+    res.writeHead(200);
+    res.end(username;
+    query.equalTo("username", username);
     query.first({
       success: function(object) {
         req.wechat_token = object.get("token");
