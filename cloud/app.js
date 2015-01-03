@@ -75,32 +75,24 @@ app.use(function(req, res, next) {
      //usertoken = 'ADAQABAAABAQDktH6UrE77vsp';
      muser.findUserByName(urlPath.substr(2)).then(function (c) {
        user = c;
+       req.wechat_token = user.get("token");
+     },{
+       res.writeHead(200);
+       res.end('hello node api');
      });
-     req.wechat_token = user.get("token");
+   }else{
+     res.writeHead(200);
+     res.end('hello node api');
    }
    next();
 });
-
-//app.use('/base', wechat( getUserToken(), function (req, res, next) {
-//  res.writeHead(200);
-//  res.end('hello node api');
-//}));
 
 app.get('/u*', wechat( usertoken, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
 
-app.use('/u12', function (req, res, next) {
-  res.writeHead(200);
-  res.end(req.wechat_token);
-});
-//app.get('/u*', wechat( config, function (req, res, next) {
-//  res.writeHead(200);
-//  res.end('hello node api');
-//}));
-
-app.post('/u23', wechat( config, wechat.text(function (message, req, res, next) {
+app.post('/u*', wechat( usertoken, wechat.text(function (message, req, res, next) {
   res.reply('hehe  ' + message.FromUserName + req.path);
   //res.writeHead(200);
   //res.end('hello node api');
