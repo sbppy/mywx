@@ -66,15 +66,15 @@ app.use(function(req, res, next) {
 //   var user = new AV.User();
    var urlPath = req.path;
 
-   if (urlPath.substr(0,3) == '/u/'){
-     muser.findUserByName(urlPath.substr(3)).then(function (c) {
+   if (urlPath.substr(0,2) == '/u'){
+     muser.findUserByName(urlPath.substr(2)).then(function (c) {
        req.wechat_token = c.get("token");
      });
    };
    next();
 });
 
-app.use('/u/*', wechat( usertoken, function (req, res, next) {
+app.use('/u*', wechat( usertoken, function (req, res, next) {
   res.writeHead(200);
   res.end('hello node api');
 }));
