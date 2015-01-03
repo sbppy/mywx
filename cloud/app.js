@@ -2,7 +2,7 @@
 var express = require('express');
 var wechat = require('wechat');
 var muser = require('cloud/muser.js');
-//var User = AV.Object.extend('_User');
+var User = AV.Object.extend('_User');
 
 //var config = require('cloud/config.js');
 
