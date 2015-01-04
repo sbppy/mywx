@@ -66,8 +66,7 @@ app.use(function(req, res, next) {
   var urlPath = req.path;
   var query = new AV.Query(AppUser);
   var userid = urlPath.substr(2);
-  //var printtype = '';
-  
+
   if (urlPath.substr(0,2) == '/u'){
     query.equalTo("userid", parseInt(userid));
     query.first({
@@ -75,12 +74,12 @@ app.use(function(req, res, next) {
         //for (var i = 0; i < results.length; i++) {
         //  var currentUser = results[i];
         if (currentUser){
-          res.writeHead(200);
-          res.end(currentUser.get('token'));
+          //res.writeHead(200);
+          //res.end(currentUser.get('token'));
           req.wechat_token = currentUser.get('token');
-        }else{
-          res.writeHead(200);
-          res.end("not found " + userid);
+        //}else{
+        //  res.writeHead(200);
+        //  res.end("not found " + userid);
         }
         next();
         //}
