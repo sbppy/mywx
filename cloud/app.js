@@ -78,6 +78,9 @@ app.use(function(req, res, next) {
           res.writeHead(200);
           res.end(currentUser.get('token'));
           req.wechat_token = currentUser.get('token');
+        }else{
+          res.writeHead(200);
+          res.end("not found " + userid);
         }
         next();
         //}
