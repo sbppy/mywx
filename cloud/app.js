@@ -7,6 +7,7 @@ var muser = require('cloud/muser.js');
 
 var app = express();
 var AppUser = AV.Object.extend("AppUser");
+var UserIdCounter = AV.Object.extend("UserIdCounter");
 
 // App 全局配置
 app.use(express.query());
@@ -39,27 +40,23 @@ function randomString(length) {
 }
 
 function initUser(userId, openId) {
-  var user = new AV.User();
-  var rtn;
-  user.set("username", userId);
-  user.set("password", randomString(6));
-  user.set("email", userId + "@example.com");
-  user.set("openId", openId);
-  user.set("encodingAESKey",randomString(43)); 
-  user.set("token",randomString(6));
+  var appUser = new AV.AppUser();
 
-  user.signUp(null, {
-    success: function(user) {
-      // Hooray! Let them use the app now.
-      rtn = user.get("objectId");
+  appUser.set("userid", userId);
+  appUser.set("openId", openId);
+  appUser.set("token",randomString(6));
+
+  appUser.save(null, {
+    success: function(appUser) {
+      // Execute any logic that should take place after the object is saved.
+      alert('New object created with objectId: ' + gameScore.id);
     },
-    error: function(user, error) {
-      // Show the error message somewhere and let the user try again.
-      alert("Error: " + error.code + " " + error.message);
-      rtn = "-1";
+    error: function(appUser, error) {
+      // Execute any logic that should take place if the save fails.
+      // error is a AV.Error with an error code and description.
+      alert('Failed to create new object, with error code: ' + error.description);
     }
-  }); 
-  return rtn;
+  });
 }
 
 app.use(function(req, res, next) {
@@ -87,17 +84,9 @@ app.use(function(req, res, next) {
         res.end("Error: " + error.code + " " + error.message);
       }
     });
-    //muser.findUserByName(urlPath.substr(2)).then(function (c) {
-    //  req.wechat_token = c.get("token");
-    //});
+  }else{
+    next();
   };
-  //res.writeHead(200);
-  //if (isfound){
-  //res.end(printtype);
-  //}else{
-   //res.end('not found' + userid);
-  //}
-  //next();
 });
 
 app.get('/u*', wechat( usertoken, function (req, res, next) {
@@ -125,7 +114,6 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
   //res.end('hello node api');
 }).event(function (message, req, res, next) {
  if (message.Event == 'subscribe') {
-   var UserIdCounter = AV.Object.extend("UserIdCounter");
    var query = new AV.Query(UserIdCounter);
    query.get("54a63c14e4b021ec8f4ee469", {
      success: function(userIdCounter) {
