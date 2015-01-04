@@ -41,22 +41,23 @@ function randomString(length) {
 
 function initUser(userId, openId) {
   var appUser = new AppUser();
-
+  var token = randomString(6);
   appUser.set("userid", userId);
   appUser.set("openid", openId);
-  appUser.set("token",randomString(6));
+  appUser.set("token", token);
 
   appUser.save(null, {
     success: function(appUser) {
       // Execute any logic that should take place after the object is saved.
-      alert('New object created with objectId: ' + gameScore.id);
+      //alert('New object created with objectId: ' + gameScore.id);
     },
     error: function(appUser, error) {
       // Execute any logic that should take place if the save fails.
       // error is a AV.Error with an error code and description.
-      alert('Failed to create new object, with error code: ' + error.description);
+      //alert('Failed to create new object, with error code: ' + error.description);
     }
   });
+  return token;
 }
 
 app.use(function(req, res, next) {
@@ -120,8 +121,8 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
        // The object was retrieved successfully.
        userIdCounter.increment("counter");
        userIdCounter.save();
-       initUser(userIdCounter.get("counter"),message.FromUserName);
-       res.reply('subscribe:' + userIdCounter.get("counter"));
+       var token = initUser(userIdCounter.get("counter"),message.FromUserName);
+       res.reply('subscribe!\n id:' + userIdCounter.get("counter") + '\n token:' + token);
      },
      error: function(userIdCounter, error) {
      // The object was not retrieved successfully.
