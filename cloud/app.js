@@ -40,10 +40,10 @@ function randomString(length) {
 }
 
 function initUser(userId, openId) {
-  var appUser = new AV.AppUser();
+  var appUser = new AppUser();
 
   appUser.set("userid", userId);
-  appUser.set("openId", openId);
+  appUser.set("openid", openId);
   appUser.set("token",randomString(6));
 
   appUser.save(null, {
