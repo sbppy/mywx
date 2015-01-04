@@ -132,6 +132,16 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
    });
    
  }else if(message.Event == 'unsubscribe') {
+   var query = new AV.Query(AppUser);
+   query.equalTo("openid", message.FromUserName);
+   query.destroyAll({
+     success: function(){
+       //delete all objects by this query successfully.
+     },
+     error: function(err){
+       //There was an error.
+     }
+   });
    res.reply('unsubscribe' );
  }else{
    res.reply('menu ' + message.EventKey);
