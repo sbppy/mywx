@@ -69,7 +69,7 @@ app.use(function(req, res, next) {
   //var printtype = '';
   
   if (urlPath.substr(0,2) == '/u'){
-    query.equalTo("userid", userid);
+    query.equalTo("userid", parseInt(userid));
     query.first({
       success: function(currentUser) {
         //for (var i = 0; i < results.length; i++) {
