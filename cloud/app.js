@@ -114,7 +114,7 @@ app.use('/u122333', wechat( usertoken, wechat.text(function (message, req, res, 
 })));
 
 app.use('/base', wechat( config, wechat.text(function (message, req, res, next) {
-  res.reply('hehe  ' + message.FromUserName + req.path);
+  res.reply(message.MsgType);
   //res.writeHead(200);
   //res.end('hello node api');
 }).event(function (message, req, res, next) {
@@ -150,6 +150,17 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
  }else{
    res.reply('menu ' + message.EventKey);
  }
+}).link(function (message, req, res, next) {
+  // message为链接内容
+  // { ToUserName: 'gh_d3e07d51b513',
+  // FromUserName: 'oPKu7jgOibOA-De4u8J2RuNKpZRw',
+  // CreateTime: '1359125022',
+  // MsgType: 'link',
+  // Title: '公众平台官网链接',
+  // Description: '公众平台官网链接',
+  // Url: 'http://1024.com/',
+  // MsgId: '5837397520665436492' }
+  res.reply(message.MsgType);
 })));
 
 
