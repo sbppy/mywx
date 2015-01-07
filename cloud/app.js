@@ -160,7 +160,7 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
   // Description: '公众平台官网链接',
   // Url: 'http://1024.com/',
   // MsgId: '5837397520665436492' }
-  res.reply(message.MsgType);
+  res.reply(message.Url);
 })));
 
 
