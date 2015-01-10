@@ -10,6 +10,9 @@ var AppUser = AV.Object.extend("AppUser");
 var UserIdCounter = AV.Object.extend("UserIdCounter");
 
 // App 全局配置
+app.set('views','cloud/views');   //设置模板目录
+app.set('view engine', 'ejs');    // 设置template引擎
+
 app.use(express.query());
 app.use(express.bodyParser()); 
 
@@ -163,5 +166,8 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
   res.reply(message.Url);
 })));
 
+app.get('/html/1', function(req, res){
+  res.render('hello', {message: 'helloworld'});
+});
 
 app.listen();
