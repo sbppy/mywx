@@ -1,7 +1,7 @@
 // 在 Cloud code 里初始化 Express 框架
 var express = require('express');
 var wechat = require('wechat');
-var wechatapi = require('wechat-api');
+var WechatAPI = require('wechat-api');
 var muser = require('cloud/muser.js');
 
 //var config = require('cloud/config.js');
@@ -22,6 +22,40 @@ MASTER_KEY = AV.masterKey; //你的应用 master key
 
 var usertoken = '';
 
+var accessConfig = {
+ appid: 'wx639ea8a58aa706ca',
+ secret: '9b8da813172b76ffb32237d16afae898'
+};
+
+var api = new WechatAPI(accessConfig.appid, accessConfig.secret, function (callback) {
+  // 传入一个获取全局token的方法
+  var query = new AV.Query(AppUser);
+  query.equalTo("userid", 0);
+  query.first({
+    success: function(currentUser) {
+      if (currentUser){
+        var lastToken = currentUser.get('accessToken');
+        callback(null, JSON.parse(lastToken));
+      }
+    },
+    error: function(error) {
+    }
+  });
+}, function (token, callback) {
+  // 请将token存储到全局，跨进程、跨机器级别的全局，比如写到数据库、redis等
+  // 这样才能在cluster模式及多机情况下使用，以下为写入到文件的示例
+  var query = new AV.Query(AppUser);
+  query.equalTo("userid", 0);
+  query.first({
+    success: function(currentUser) {
+      if (currentUser){
+        currentUser.set('accessToken', JSON.stringify(token));
+      }
+    },
+    error: function(error) {
+    }
+  });
+});
 
 var config = {
  token: 'ADAQABAAABAQDktH6UrE77vsp',
