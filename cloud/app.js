@@ -51,6 +51,7 @@ var api = new WechatAPI(accessConfig.appid, accessConfig.secret, function (callb
       if (currentUser){
         currentUser.set('accessToken', JSON.stringify(token));
         currentUser.save();
+        callback(null);
       }
     },
     error: function(error) {
