@@ -207,7 +207,7 @@ app.get('/html/1', function(req, res){
     if (err){
       res.render('hello', {message: err})
     }else{
-      res.render('hello', {message: token});
+      res.render('hello', {message: token.accessToken});
     }
   });
   
