@@ -203,7 +203,11 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
 
 app.get('/html/1', function(req, res){
   api.getLatestToken(function(err, token){
-    res.render('hello', {message: token});
+    if (err){
+      res.render('hello', {message: err})
+    }else{
+      res.render('hello', {message: token});
+    }
   });
   
 });
