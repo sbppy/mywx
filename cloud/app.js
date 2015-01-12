@@ -202,7 +202,10 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
 })));
 
 app.get('/html/1', function(req, res){
-  res.render('hello', {message: 'helloworld'});
+  api.getLatestToken(function(err, token){
+    res.render('hello', {message: token});
+  });
+  
 });
 
 app.listen();
