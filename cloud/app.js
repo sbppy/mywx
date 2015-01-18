@@ -2,6 +2,7 @@
 var express = require('express');
 var wechat = require('wechat');
 var WechatAPI = require('wechat-api');
+var http = require('http');
 var muser = require('cloud/muser.js');
 
 //var config = require('cloud/config.js');
@@ -100,6 +101,10 @@ function initUser(userId, openId) {
   return token;
 }
 
+function getTitle(htmlstr) {
+  return "素材1";
+}
+
 app.use(function(req, res, next) {
 //   var user = new AV.User();
   
@@ -191,6 +196,24 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
    res.reply('menu ' + message.EventKey);
  }
 }).link(function (message, req, res, next) {
+  http.get(message.Url, function(httpres) {
+    var pageData = "";
+    httpres.on('error', function (errget) {
+      res.reply("添加素材失败,请再试一下");
+    });
+    httpres.on('data', function (chunk) {
+      pageData += chunk;
+    });
+    httpres.on('end', function(){
+      var content = pageData;
+      var title = getTitle(content);
+      if (title == ""){
+        res.reply("添加素材失败,请再试一下");
+      }else{
+        res.reply("添加素材 "+title+" 成功");
+      }
+    });
+  });
   // message为链接内容
   // { ToUserName: 'gh_d3e07d51b513',
   // FromUserName: 'oPKu7jgOibOA-De4u8J2RuNKpZRw',
@@ -200,7 +223,7 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
   // Description: '公众平台官网链接',
   // Url: 'http://1024.com/',
   // MsgId: '5837397520665436492' }
-  res.reply(message.Url);
+  //res.reply(message.Url);
 })));
 
 app.get('/html/1', function(req, res){
