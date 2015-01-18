@@ -102,7 +102,9 @@ function initUser(userId, openId) {
 }
 
 function getTitle(htmlstr) {
-  return "素材1";
+  var reg = new RegExp("msg_title = \"(.*)\"");
+  var r = htmlstr.match(reg); 
+  return r; 
 }
 
 app.use(function(req, res, next) {
@@ -207,7 +209,7 @@ app.use('/base', wechat( config, wechat.text(function (message, req, res, next) 
     httpres.on('end', function(){
       var content = pageData;
       var title = getTitle(content);
-      if (title == ""){
+      if (title != null){
         res.reply("添加素材失败,请再试一下");
       }else{
         res.reply("添加素材 "+title+" 成功");
